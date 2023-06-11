@@ -73,7 +73,7 @@ module imageTemplate '../carml/0.10.0/modules/Microsoft.VirtualMachineImages/ima
   params: {
     location: location
     enableDefaultTelemetry: enableDefaultTelemetry
-    name: '${namePrefix}${serviceShort}001'
+    name: '${namePrefix}${serviceShort}_001'
     customizationSteps: customizationSteps
     ]
     imageSource: {
