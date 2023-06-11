@@ -32,11 +32,10 @@ jobs:
       with:
         fetch-depth: 0  
       # Authenticate to Az CLI using OIDC
-    - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          allow-no-subscriptions: true
+    - name: Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
       # Deploy
     - name: "Build Azure Image Builder Template"
       uses: Azure/arm-deploy@v1
