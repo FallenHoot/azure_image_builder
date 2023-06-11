@@ -1,0 +1,92 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      // Required parameters
+      "customizationSteps": {
+        "value": [
+          {
+            "restartTimeout": "10m",
+            "type": "WindowsRestart"
+          }
+        ]
+      },
+      "imageSource": {
+        "value": {
+          "offer": "Windows-11",
+          "publisher": "MicrosoftWindowsDesktop",
+          "sku": "win11-22h2-avd",
+          "type": "PlatformImage",
+          "version": "latest"
+        }
+      },
+      "name": {
+        "value": "aib_test_001"
+      },
+      "userMsiName": {
+        "value": "/subscriptions/<subscriptionID>/resourceGroups/<identityRgName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<identityName1>"
+      },
+      // Non-required parameters
+      "buildTimeoutInMinutes": {
+        "value": 60
+      },
+      "enableDefaultTelemetry": {
+        "value": "<enableDefaultTelemetry>"
+      },
+      "imageReplicationRegions": {
+        "value": []
+      },
+      "lock": {
+        "value": "CanNotDelete"
+      },
+      "managedImageName": {
+        "value": "<<namePrefix>>-mi-vmiitcom-001"
+      },
+      "osDiskSizeGB": {
+        "value": 127
+      },
+      "roleAssignments": {
+        "value": [
+          {
+            "principalIds": [
+              "<managedIdentityPrincipalId>"
+            ],
+            "principalType": "ServicePrincipal",
+            "roleDefinitionIdOrName": "Reader"
+          }
+        ]
+      },
+      "sigImageDefinitionId": {
+        "value": "<sigImageDefinitionId>"
+      },
+      "sigImageVersion": {
+        "value": "<sigImageVersion>"
+      },
+      "stagingResourceGroup": {
+        "value": "<stagingResourceGroup>"
+      },
+      "subnetId": {
+        "value": "<subnetId>"
+      },
+      "tags": {
+        "value": {
+          "Environment": "Non-Prod",
+          "Role": "DeploymentValidation"
+        }
+      },
+      "unManagedImageName": {
+        "value": "<<namePrefix>>-umi-vmiitcom-001"
+      },
+      "userAssignedIdentities": {
+        "value": [
+          "<managedIdentityResourceId>"
+        ]
+      },
+      "userMsiResourceGroup": {
+        "value": "<userMsiResourceGroup>"
+      },
+      "vmSize": {
+        "value": "Standard_D2s_v3"
+      }
+    }
+  }
