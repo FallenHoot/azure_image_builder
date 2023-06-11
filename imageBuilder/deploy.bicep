@@ -4,6 +4,9 @@ targetScope = 'subscription'
 // Parameters //
 // ========== //
 
+@description('Required. Name prefix of the Image Template to be built by the Azure Image Builder service.')
+param name string = 'test001'
+
 @description('Optional. The name of the resource group to deploy for testing purposes.')
 @maxLength(90)
 param resourceGroupName string = 'rg-imagetemplates-deploy'
@@ -73,7 +76,7 @@ module imageTemplate '../carml/0.10.0/modules/Microsoft.VirtualMachineImages/ima
   params: {
     location: location
     enableDefaultTelemetry: enableDefaultTelemetry
-    name: '${namePrefix}${serviceShort}_001'
+    name: name
     customizationSteps: customizationSteps
     ]
     imageSource: {
