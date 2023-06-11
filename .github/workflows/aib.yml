@@ -27,9 +27,6 @@ jobs:
     if: github.ref == 'refs/heads/main' 
     runs-on: ubuntu-latest
     steps:
-      # Compostite Action to verify the Bicep file
-    - name: Bicep WhatIf
-      uses: ./.github/actions/bicep-whatif.yml
       # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v2    
