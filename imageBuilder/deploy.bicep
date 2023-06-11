@@ -78,7 +78,6 @@ module imageTemplate '../carml/0.10.0/modules/Microsoft.VirtualMachineImages/ima
     enableDefaultTelemetry: enableDefaultTelemetry
     name: name
     customizationSteps: customizationSteps
-    ]
     imageSource: {
       offer: 'Windows-11'
       publisher: 'MicrosoftWindowsDesktop'
