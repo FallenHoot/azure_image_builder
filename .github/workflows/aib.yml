@@ -18,8 +18,7 @@ permissions:
 env:
   Location: "norwayeast"
   AVDSubId: "a7693725-2adf-4eff-98eb-fc941246426d"
-  ServiceObjectRGName: "alz-centrallogging"
-  HubNetworkSubId: "0f18a4f9-2e78-43d0-b06a-6a490469a7a6"
+  ImageBuilderRGName: "rg-image-builder"
   runNumber: ${{ github.run_number }}
 
 jobs:
@@ -29,9 +28,11 @@ jobs:
     steps:
       # Checkout the repository to the GitHub Actions runner
     - name: Checkout
-      uses: actions/checkout@v2    
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  
       # Authenticate to Az CLI using OIDC
-    - name: Login via OIDC
+    - name: Azure Login via OIDC
       uses: azure/login@v1
       with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
@@ -39,11 +40,12 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     
       # Deploy
-    - name: "Bicep Deployment"
-      uses: Azure/cli@v1
+    - name: "Build Azure Image Builder Template"
+      uses: Azure/arm-deploy@v1
       with:
-        inlineScript: |
-          az deployment sub create \
-            --name deploy-${{ github.run_id }} \
-            --template-file imageBuilder\deploy.bicep \
-            --location $Location 
+        scope: subscription
+        subscriptionId: ${{ env.AVDSubId }}
+        region: ${{ env.Location }}
+        template: imageBuilder\deploy.bicep
+        deploymentName: create_zone-0-${{ env.runNumber }}
+        failOnStdErr: false
